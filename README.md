@@ -1,6 +1,7 @@
-<h1>ExpNo 6 : Implement Minimax Search Algorithm for a Simple TIC-TAC-TOE game</h1> 
+<h1>Exp No 6 : Implement Minimax Search Algorithm for a Simple TIC-TAC-TOE game</h1> 
 <h3>Name: PRAVEEN K</h3>
-<h3>Register Number: 212223040152</h3>
+<h3>Register Number: 212223040152 </h3>
+
 <H3>Aim:</H3>
 <p>
     Implement Minimax Search Algorithm for a Simple TIC-TAC-TOE game
@@ -103,9 +104,20 @@ def minimax(game)
 end
 
 <hr>
-<h2>PROGRAM:</h2>
+<h2>Sample Input and Output</h2>
 
-```python
+![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/6b668685-8bcc-43c5-b5c2-ddd43f3da84a)
+![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/8ca1b08a-8312-4ef5-89df-e69b7b2c3fa2)
+![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/dc06427a-d4ce-43a1-95bd-9acfaefac323)
+![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/a8a27e2a-6fd4-46a2-afb5-6d27b8556702)
+![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/a2acb6a1-ed8e-42e5-8968-fe805e4b0255)
+
+
+### PROGRAM:
+
+```
+
+
 import time
 
 class Game:
@@ -116,7 +128,7 @@ class Game:
         self.current_state = [['.','.','.'],
                               ['.','.','.'],
                               ['.','.','.']]
-        self.player_turn = 'X'  # Player X always plays first
+        self.player_turn = 'X' 
 
     def draw_board(self):
         for i in range(3):
@@ -134,42 +146,37 @@ class Game:
             return True
 
     def is_end(self):
-        # Vertical win
         for i in range(3):
             if (self.current_state[0][i] != '.' and
                 self.current_state[0][i] == self.current_state[1][i] and
                 self.current_state[1][i] == self.current_state[2][i]):
                 return self.current_state[0][i]
 
-        # Horizontal win
         for i in range(3):
             if (self.current_state[i] == ['X', 'X', 'X']):
                 return 'X'
             elif (self.current_state[i] == ['O', 'O', 'O']):
                 return 'O'
 
-        # Main diagonal win
         if (self.current_state[0][0] != '.' and
             self.current_state[0][0] == self.current_state[1][1] and
             self.current_state[0][0] == self.current_state[2][2]):
             return self.current_state[0][0]
 
-        # Second diagonal win
         if (self.current_state[0][2] != '.' and
             self.current_state[0][2] == self.current_state[1][1] and
             self.current_state[0][2] == self.current_state[2][0]):
             return self.current_state[0][2]
 
-        # Check for a tie
         for i in range(3):
             for j in range(3):
                 if self.current_state[i][j] == '.':
-                    return None  # Game is still ongoing
+                    return None  
 
-        return '.'  # It's a tie
+        return '.' 
 
     def max(self):
-        maxv = -2  # Initial worse case
+        maxv = -2  
         px = None
         py = None
 
@@ -184,18 +191,18 @@ class Game:
         for i in range(3):
             for j in range(3):
                 if self.current_state[i][j] == '.':
-                    self.current_state[i][j] = 'O'  # Simulate AI's move
-                    (m, min_i, min_j) = self.min()  # Call min() to evaluate
+                    self.current_state[i][j] = 'O' 
+                    (m, min_i, min_j) = self.min() 
                     if m > maxv:
                         maxv = m
                         px = i
                         py = j
-                    self.current_state[i][j] = '.'  # Undo the move
+                    self.current_state[i][j] = '.' 
 
         return (maxv, px, py)
 
     def min(self):
-        minv = 2  # Initial worse case
+        minv = 2  
         qx = None
         qy = None
 
@@ -210,13 +217,13 @@ class Game:
         for i in range(3):
             for j in range(3):
                 if self.current_state[i][j] == '.':
-                    self.current_state[i][j] = 'X'  # Simulate player's move
-                    (m, max_i, max_j) = self.max()  # Call max() to evaluate
+                    self.current_state[i][j] = 'X'  
+                    (m, max_i, max_j) = self.max()  
                     if m < minv:
                         minv = m
                         qx = i
                         qy = j
-                    self.current_state[i][j] = '.'  # Undo the move
+                    self.current_state[i][j] = '.' 
 
         return (minv, qx, qy)
 
@@ -267,21 +274,14 @@ if __name__ == "__main__":
     main()
 ```
 
-<hr>
+### OUTPUT:
 
-<h2>Sample Input and Output</h2>
-
-![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/6b668685-8bcc-43c5-b5c2-ddd43f3da84a)
-![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/8ca1b08a-8312-4ef5-89df-e69b7b2c3fa2)
-![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/dc06427a-d4ce-43a1-95bd-9acfaefac323)
-![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/a8a27e2a-6fd4-46a2-afb5-6d27b8556702)
-![image](https://github.com/natsaravanan/19AI405FUNDAMENTALSOFARTIFICIALINTELLIGENCE/assets/87870499/a2acb6a1-ed8e-42e5-8968-fe805e4b0255)
+<img width="458" height="686" alt="Screenshot 2025-10-06 092848" src="https://github.com/user-attachments/assets/23c7610a-3a28-4437-b281-da2ed9fa06b7" />
 
 <hr>
-<h2>OUTPUT</h2>
 
-![alt text](image.png)
-![alt text](image-1.png)
+<img width="400" height="393" alt="Screenshot 2025-10-06 092901" src="https://github.com/user-attachments/assets/403793f2-3930-4ab1-ae13-cc2e7f6566fa" />
+
 
 <hr>
 <h2>Result:</h2>
